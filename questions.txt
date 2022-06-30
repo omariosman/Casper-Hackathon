@@ -1,1 +1,2 @@
-Q1: Does cp1 (account1) equivalent to the private key of account 1?
+Q1: Does cp1 (account1) equivalent to the private key of account 1? [done]
+Q2: How to create an object from the PrivateKey class?
