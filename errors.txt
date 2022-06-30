@@ -8,3 +8,8 @@ Traceback (most recent call last):
   File "C:\Users\omaro\AppData\Local\Programs\Python\Python39\lib\site-packages\pycspr\factory\deploys.py", line 143, in create_deploy_parameters
     create_public_key(account.algo, account.pbk)
 AttributeError: 'str' object has no attribute 'algo'
+
+My conclusion:
+The argument that should be passed to the function should be of type PrivateKey
+PrivateKey is a class that has attributes, one of the attributes is the "algo"
+However when I pass the private key right away, it gives this error as it does not have the algo (mismatch the class types)
