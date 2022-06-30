@@ -51,7 +51,10 @@ starter()
 Note: We should remove the first byte of the key
 because it is not part of the key
 it is only a meta data that indicates that this is an address
+Ref: https://bitcoin.stackexchange.com/questions/88885/convert-33-byte-public-key-with-no-parity-prefix-to-address
 and we should also convert the hexa to raw bytes using python method bytes.fromhex()
+
+
 cp1
 pb key
 01b100f3c3762b9382dff700abd19c719ce8b4efdd83e2c038017db5697ffe62fb
