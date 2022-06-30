@@ -34,14 +34,15 @@ def custom_transfer_function(cp1, cp2):
         chain_name="Testnet"
         )
 
-    pycspr.create_transfer(
+    deploy = pycspr.create_transfer(
             params=deploy_params,
             amount=int(2.5e9),
-            target=cp2,
+            target=cp2.account_key,
             correlation_id=random.randint(1, 1e6)
-
     )
 
+
+    return deploy
 
 starter()
 
