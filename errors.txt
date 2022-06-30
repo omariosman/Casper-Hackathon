@@ -1,3 +1,4 @@
+ERROR
 Traceback (most recent call last):
   File "E:\Blockchain\Casper\contract.py", line 37, in <module>
     starter()
@@ -13,3 +14,27 @@ My conclusion:
 The argument that should be passed to the function should be of type PrivateKey
 PrivateKey is a class that has attributes, one of the attributes is the "algo"
 However when I pass the private key right away, it gives this error as it does not have the algo (mismatch the class types)
+
+
+
+
+
+ERROR
+Traceback (most recent call last):
+  File "E:\Blockchain\Casper\contract.py", line 41, in <module>
+    starter()
+  File "E:\Blockchain\Casper\contract.py", line 23, in starter
+    custom_transfer_function(cp1, dest_public_Address)
+  File "E:\Blockchain\Casper\contract.py", line 32, in custom_transfer_function
+    pycspr.create_transfer(
+  File "C:\Users\omaro\AppData\Local\Programs\Python\Python39\lib\site-packages\pycspr\factory\deploys.py", line 209, in create_transfer
+    create_transfer_session(amount, target, correlation_id)
+  File "C:\Users\omaro\AppData\Local\Programs\Python\Python39\lib\site-packages\pycspr\factory\deploys.py", line 230, in create_transfer_session
+    "target": CL_PublicKey.from_account_key(target),
+  File "C:\Users\omaro\AppData\Local\Programs\Python\Python39\lib\site-packages\pycspr\types\cl_values.py", line 187, in from_account_key
+    return CL_PublicKey(crypto.KeyAlgorithm(key[0]), key[1:])
+  File "C:\Users\omaro\AppData\Local\Programs\Python\Python39\lib\enum.py", line 315, in __call__
+    return cls.__new__(cls, value)
+  File "C:\Users\omaro\AppData\Local\Programs\Python\Python39\lib\enum.py", line 611, in __new__
+    raise ve_exc
+ValueError: '0' is not a valid KeyAlgorithm
