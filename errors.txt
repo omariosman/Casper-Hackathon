@@ -33,6 +33,8 @@ Traceback (most recent call last):
     "target": CL_PublicKey.from_account_key(target),
   File "C:\Users\omaro\AppData\Local\Programs\Python\Python39\lib\site-packages\pycspr\types\cl_values.py", line 187, in from_account_key
     return CL_PublicKey(crypto.KeyAlgorithm(key[0]), key[1:])
+    
+
   File "C:\Users\omaro\AppData\Local\Programs\Python\Python39\lib\enum.py", line 315, in __call__
     return cls.__new__(cls, value)
   File "C:\Users\omaro\AppData\Local\Programs\Python\Python39\lib\enum.py", line 611, in __new__
@@ -56,3 +58,19 @@ Traceback (most recent call last):
   File "C:\Users\omaro\AppData\Local\Programs\Python\Python39\lib\site-packages\pycspr\types\cl_values.py", line 187, in from_account_key
     return CL_PublicKey(crypto.KeyAlgorithm(key[0]), key[1:])
 TypeError: 'PublicKey' object is not subscriptable
+
+
+
+ERROR
+Traceback (most recent call last):
+  File "E:\Blockchain\Casper\contract.py", line 47, in <module>
+    starter()
+  File "E:\Blockchain\Casper\contract.py", line 28, in starter
+    custom_transfer_function(cp1, cp2)
+  File "E:\Blockchain\Casper\contract.py", line 40, in custom_transfer_function
+    target=cp2.account_key,
+  File "C:\Users\omaro\AppData\Local\Programs\Python\Python39\lib\site-packages\pycspr\types\keys.py", line 25, in account_key
+    return crypto.get_account_key(self.algo, self.pbk)
+  File "C:\Users\omaro\AppData\Local\Programs\Python\Python39\lib\site-packages\pycspr\crypto\cl_operations.py", line 44, in get_account_key
+    assert len(public_key) == _PUBLIC_KEY_LENGTHS[key_algo], \
+AssertionError: Invalid ED25519 public key length.
