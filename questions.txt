@@ -4,3 +4,4 @@ Q3: Where Can I find the public key of the account? (The public key not the publ
 Note1: When I download them from Casper Signer, I only get the private key.
 Note2: When I copy the public key from Casper Signer, it gives me: Invalid ED25519 public key length.
 Guess: I think that I used a wrong crypto algorithm, that is why it says that the public key has invalid length
+Note: I also used this algorithm SECP256K1 and it gives the same error.
