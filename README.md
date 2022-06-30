@@ -2,7 +2,7 @@
 Blockchain Tokenomics Incentive system for Recycling Water Bottles
 
 Proposed by:
-Kareem Kassab
+Kareem Kassab &
 Omar Osman
 
 Problem Discussion:
