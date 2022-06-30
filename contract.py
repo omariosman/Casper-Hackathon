@@ -16,14 +16,15 @@ from pycspr import crypto
 
 
 def starter():
-    
     #cp1 = Treasuery Account
     cp1_pv_key = "MC4CAQAwBQYDK2VwBCIEICDgdkR5F7tESDeffkvez3XTXa8QVyUpDggPciM9iCLh"
-    cp1_pb_key = "01b100f3c3762b9382dff700abd19c719ce8b4efdd83e2c038017db5697ffe62fb"
+    cp1_pb_key =  bytes.fromhex("b100f3c3762b9382dff700abd19c719ce8b4efdd83e2c038017db5697ffe62fb")
+
     cp1 = PrivateKey(cp1_pv_key, cp1_pb_key)
     
     #cp2 = Destination address
-    cp2_pb_key = input("Enter the public address: ")
+    cp2_pb_key = bytes.fromhex(input("Enter the public address: "))
+    print("len: ", len(cp2_pb_key))
     cp2 = PublicKey(crypto.KeyAlgorithm.ED25519, cp2_pb_key)
     custom_transfer_function(cp1, cp2)
 
@@ -54,5 +55,4 @@ pb key
 cp2
 pb key
 01d8956d47246fbe96f15114289d013a13452343d0a5316036f7bfe07ba49051a0
-
-"""
+    """
