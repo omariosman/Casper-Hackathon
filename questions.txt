@@ -1,2 +1,4 @@
 Q1: Does cp1 (account1) equivalent to the private key of account 1? [done]
-Q2: How to create an object from the PrivateKey class?
+Q2: How to create an object from the PrivateKey class? [done]
+Q3: Where Can I find the public key of the account? (The public key not the public address).
+Note: When I download them from Casper Signer, I only get the private key.
