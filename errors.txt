@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "E:\Blockchain\Casper\contract.py", line 37, in <module>
+    starter()
+  File "E:\Blockchain\Casper\contract.py", line 19, in starter
+    custom_transfer_function("MC4CAQAwBQYDK2VwBCIEICDgdkR5F7tESDeffkvez3XTXa8QVyUpDggPciM9iCLh", dest_public_Address)
+  File "E:\Blockchain\Casper\contract.py", line 23, in custom_transfer_function
+    deploy_params = pycspr.create_deploy_parameters(
+  File "C:\Users\omaro\AppData\Local\Programs\Python\Python39\lib\site-packages\pycspr\factory\deploys.py", line 143, in create_deploy_parameters
+    create_public_key(account.algo, account.pbk)
+AttributeError: 'str' object has no attribute 'algo'
