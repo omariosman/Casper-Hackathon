@@ -1,0 +1,1 @@
+Q1: Does cp1 (account1) equivalent to the private key of account 1?
