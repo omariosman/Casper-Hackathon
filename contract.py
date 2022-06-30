@@ -48,6 +48,10 @@ def custom_transfer_function(cp1, cp2):
 starter()
 
 """
+Note: We should remove the first byte of the key
+because it is not part of the key
+it is only a meta data that indicates that this is an address
+and we should also convert the hexa to raw bytes using python method bytes.fromhex()
 cp1
 pb key
 01b100f3c3762b9382dff700abd19c719ce8b4efdd83e2c038017db5697ffe62fb
