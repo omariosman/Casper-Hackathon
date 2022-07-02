@@ -13,8 +13,37 @@ from pycspr.types import Deploy
 from pycspr.types import PublicKey
 from pycspr import crypto
 
+
+#import cryptography.hazmat.primitives.asymmetric.ed25519 as ed25519
+#cp1_pv_key = ed25519.Ed25519PrivateKey.from_private_bytes(open('wallet_key/OmarOsman23_secret_key.pem', 'rb').read()[:32])
+#cp1_pv_key = str(cp1_pv_key)
 #def build_arguments():
 _ARGS = argparse.ArgumentParser("Illustration of how to execute native transfers.")
+
+_ARGS.add_argument(
+    "--cp1-secret-key-path",
+    default="",
+    dest="path_to_cp1_secret_key",
+    help="Path to counter-party one's secret_key.pem file.",
+    type=str,
+    )
+
+_ARGS.add_argument(
+    "--cp1-secret-key-type",
+    default=KeyAlgorithm.ED25519.name,
+    dest="type_of_cp1_secret_key",
+    help="Type of counter party one's secret key.",
+    type=str,
+    )
+
+_ARGS.add_argument(
+    "--cp2-account-key-path",
+    default="",
+    dest="path_to_cp2_account_key",
+    help="Path to counter-party two's public_key_hex file.",
+    type=str,
+    )
+
 
 _ARGS.add_argument(
     "--node-host",
@@ -31,8 +60,14 @@ _ARGS.add_argument(
     help="Node API JSON-RPC port.  Typically 7777 on most nodes.",
     type=int,
     )
-    #print("ARGSSSSSSSSSSSSS", _ARGS)
-    #return _ARGS
+
+_ARGS.add_argument(
+    "--chain",
+    default="casper-net-1",
+    dest="chain_name",
+    help="Name of target chain.",
+    type=str,
+    )
 
 args = _ARGS.parse_args()
 
@@ -44,50 +79,60 @@ def _get_client(args: argparse.Namespace) -> NodeClient:
         port_rpc=args.node_port_rpc,
     ))
 
+
+def _get_counter_parties(args: argparse.Namespace) -> typing.Tuple[PrivateKey, PublicKey]:
+    """Returns the 2 counter-parties participating in the transfer.
+    """
+    cp1 = pycspr.parse_private_key(
+        args.path_to_cp1_secret_key,
+        args.type_of_cp1_secret_key,
+        )
+    cp2 = pycspr.parse_public_key(
+        args.path_to_cp2_account_key
+        )
+
+    return cp1, cp2
+
+
+
 def starter(args):
     #set node client
     client = _get_client(args)
 
     #cp1 = Treasuery Account
-    cp1_pv_key = "MC4CAQAwBQYDK2VwBCIEICDgdkR5F7tESDeffkvez3XTXa8QVyUpDggPciM9iCLh"
-    cp1_pb_key =  bytes.fromhex("b100f3c3762b9382dff700abd19c719ce8b4efdd83e2c038017db5697ffe62fb")
+    cp1, cp2 = _get_counter_parties(args)
 
-    cp1 = PrivateKey(cp1_pv_key, cp1_pb_key)
-    
-    #cp2 = Destination address
-    cp2_pb_key = bytes.fromhex(input("Enter the public address: "))
-    
-    cp2_pb_key = cp2_pb_key[1:]
-    print("len: ", len(cp2_pb_key))
-    print("new key: ", cp2_pb_key)
-    cp2 = PublicKey(crypto.KeyAlgorithm.ED25519, cp2_pb_key)
-    deploy = custom_transfer_function(cp1, cp2)
+
+    # Set deploy.
+    deploy: Deploy = _get_deploy(args, cp1, cp2)
+
+    # Approve deploy.
     deploy.approve(cp1)
 
-    #send the transaction to the chain
+    # Dispatch deploy to a node.
     client.send_deploy(deploy)
 
     print(f"Deploy dispatched to node [{args.node_host}]: {deploy.hash.hex()}")
-
-
-def custom_transfer_function(cp1, cp2):
+   
+def _get_deploy(args: argparse.Namespace, cp1: PrivateKey, cp2: PublicKey) -> Deploy:
+    """Returns transfer deploy to be dispatched to a node.
+    """
+    # Set standard deploy parameters.
     deploy_params = pycspr.create_deploy_parameters(
         account=cp1,
-        chain_name="Testnet"
+        chain_name=args.chain_name
         )
 
+    # Set deploy.
     deploy = pycspr.create_transfer(
-            params=deploy_params,
-            amount=int(100),
-            target=cp2.account_key,
-            correlation_id=random.randint(1, 1e6)
-    )
-
+        params=deploy_params,
+        amount=int(2.5e9),
+        target=cp2.account_key,
+        correlation_id=random.randint(1, 1e6)
+        )
 
     return deploy
 
-#custom_args = build_arguments()
-#custom_args = custom_args.parse_args()
 starter(args)
 
 
