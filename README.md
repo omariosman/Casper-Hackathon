@@ -66,7 +66,14 @@ How to run the script?
 python newcont.py --node-host="136.243.187.84" --node-port-rpc="7777" --chain="casper-test" --cp1-secret-key-path="E:\Blockchain\Casper\wallet_key\TreasuryAccount_secret_key.pem" --cp1-secret-key-type="ED25519" --cp2-account-key-path="E:\Blockchain\Casper\public_keys\omar_pb_key.txt"
 
 
+    """
+    Put this line to get the args from the cmd
+    #args = _ARGS.parse_args()
 
+    Put this line to use argparse without the cmd
+    args = _ARGS.parse_args(["--cp1-secret-key-path", "E:\Blockchain\Casper\wallet_key\TreasuryAccount_secret_key.pem", "--cp1-secret-key-type", "ED25519", "--cp2-account-key-path", "E:\Blockchain\Casper\public_keys\omar_pb_key.txt", "--node-host","136.243.187.84", "--node-port-rpc","7777", "--chain", "casper-test"])
+    
+    """
 
 
 
