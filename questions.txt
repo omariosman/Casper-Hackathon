@@ -1,7 +1,0 @@
-Q1: Does cp1 (account1) equivalent to the private key of account 1? [done]
-Q2: How to create an object from the PrivateKey class? [done]
-Q3: Where Can I find the public key of the account? (The public key not the public address).
-Note1: When I download them from Casper Signer, I only get the private key.
-Note2: When I copy the public key from Casper Signer, it gives me: Invalid ED25519 public key length.
-Guess: I think that I used a wrong crypto algorithm, that is why it says that the public key has invalid length
-Note: I also used this algorithm SECP256K1 and it gives the same error.
